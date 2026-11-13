@@ -4,14 +4,10 @@ import { useApp } from '../context/AppContext';
 
 export default function AuthPage() {
   const navigate = useNavigate();
-  const { saveSession, showToast, toast } = useApp();
-  const [authMode, setAuthMode] = useState('login');
+  const { saveSession, toast } = useApp();
   const [authForm, setAuthForm] = useState({
-    name: '',
-    email: 'admin@whatsapp.local',
-    password: 'admin123',
-    confirmPassword: '',
-    company: '',
+    email: '',
+    password: '',
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -19,25 +15,23 @@ export default function AuthPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    if (authMode === 'register' && authForm.password !== authForm.confirmPassword) {
-      setError('كلمتا المرور غير متطابقتين');
+    if (!authForm.email || !authForm.password) {
+      setError('يرجى إدخال البريد الإلكتروني وكلمة المرور');
       return;
     }
     setLoading(true);
     try {
-      const path = authMode === 'login' ? '/api/v1/auth/login' : '/api/v1/auth/register';
-      const res = await fetch(path, {
+      const res = await fetch('/api/v1/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name: authForm.name || 'أحمد محمد',
-          email: authForm.email,
+          email: authForm.email.trim(),
           password: authForm.password,
         }),
       });
       const data = await res.json();
       if (!res.ok) {
-        setError(data.error || 'فشل تسجيل الدخول');
+        setError(data.error || 'بيانات الدخول غير صحيحة');
       } else {
         saveSession(data.token, data.user);
         navigate('/');
@@ -51,86 +45,56 @@ export default function AuthPage() {
 
   return (
     <div
-      className="min-h-screen bg-[#f7f7fc] flex items-center justify-center p-4 lg:p-8"
+      className="min-h-screen bg-[#f3f6f9] flex items-center justify-center p-4 lg:p-8"
       dir="rtl"
     >
       {toast && (
-        <div className="fixed bottom-6 left-6 z-50 bg-[#24213b] text-white px-5 py-3 rounded-[12px] shadow-lg text-[12px] font-semibold">
+        <div className="fixed bottom-6 left-6 z-50 bg-[#0e2032] text-white px-5 py-3 rounded-[12px] shadow-lg text-[12px] font-semibold">
           {toast}
         </div>
       )}
 
-      <div className="w-full max-w-[1440px] bg-[#f7f7fc] rounded-[24px] grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+      <div className="w-full max-w-[1380px] bg-white rounded-[28px] shadow-[0_12px_45px_rgba(14,32,50,0.06)] grid grid-cols-1 lg:grid-cols-12 gap-0 overflow-hidden items-stretch">
         {/* Form Column */}
-        <div className="lg:col-span-6 flex flex-col justify-between px-4 sm:px-12 py-6">
+        <div className="lg:col-span-6 flex flex-col justify-between p-6 sm:p-12 md:p-14 bg-white">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-[42px] h-[42px] rounded-[13px] bg-[#7b68ee] flex items-center justify-center text-white font-inter font-semibold text-[23px]">
-                W
+              <img
+                src="/logo.png"
+                alt="almoq3"
+                className="w-[48px] h-[48px] object-contain"
+              />
+              <div>
+                <span className="text-[#0e2032] text-[26px] font-bold block leading-none">
+                  almoq3
+                </span>
+                <span className="text-[#00a3e0] text-[11px] font-semibold tracking-wider font-inter">
+                  WHATSAPP API GATEWAY
+                </span>
               </div>
-              <span className="text-[#22213d] text-[29px] font-semibold">وصلة</span>
             </div>
-            <span className="text-[#838398] text-[12px]">بوابة واتساب للمشاريع</span>
+            <span className="text-[#72849a] text-[11px] bg-[#f0f6fa] px-3 py-1.5 rounded-full font-medium">
+              بوابة خاصة للمشاريع
+            </span>
           </div>
 
-          <div className="bg-white rounded-[24px] p-8 sm:p-10 shadow-[0_8px_30px_rgba(34,33,61,0.03)] my-8 max-w-[540px] w-full mx-auto">
-            <div className="bg-[#f3f2fa] h-[46px] rounded-[12px] p-1 grid grid-cols-2 gap-1 mb-8">
-              {[
-                { id: 'login', label: 'تسجيل الدخول' },
-                { id: 'register', label: 'إنشاء حساب' },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  type="button"
-                  onClick={() => {
-                    setAuthMode(tab.id);
-                    setError('');
-                  }}
-                  className={`rounded-[9px] text-[13px] transition-all ${
-                    authMode === tab.id
-                      ? 'bg-white text-[#23223d] font-semibold shadow-sm'
-                      : 'text-[#84839a] font-normal'
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-
-            <h1 className="text-[#23223d] text-[28px] sm:text-[31px] font-semibold mb-2">
-              {authMode === 'login' ? 'أهلاً بعودتك' : 'ابدأ مساحتك الخاصة'}
+          <div className="my-10 max-w-[460px] w-full mx-auto">
+            <h1 className="text-[#0e2032] text-[28px] sm:text-[32px] font-bold mb-2">
+              تسجيل الدخول
             </h1>
-            <p className="text-[#838398] text-[13px] mb-7">
-              {authMode === 'login'
-                ? 'سجّل دخولك لإدارة مشاريعك وأرقام واتساب المتصلة.'
-                : 'أنشئ حساباً لربط أرقامك وإدارة مشاريعك من لوحة واحدة.'}
+            <p className="text-[#72849a] text-[13px] mb-8">
+              أدخل بياناتك لإدارة أرقام واتساب، المفاتيح، والـ Webhooks الخاصة بمشاريعك.
             </p>
 
             {error && (
-              <div className="mb-5 bg-[#fceef1] text-[#c25e76] px-4 py-3 rounded-[11px] text-[12px] font-semibold">
+              <div className="mb-6 bg-[#fdeeed] text-[#d32f2f] px-4 py-3 rounded-[12px] text-[12px] font-semibold border border-[#fadad7]">
                 {error}
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {authMode === 'register' && (
-                <div>
-                  <label className="block text-[#24233d] text-[12px] font-semibold mb-2">
-                    الاسم الكامل
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={authForm.name}
-                    onChange={(e) => setAuthForm({ ...authForm, name: e.target.value })}
-                    placeholder="أحمد محمد"
-                    className="w-full h-[52px] bg-[#f8f7fd] rounded-[11px] px-4 text-[#55516f] text-[14px] outline-none focus:ring-2 focus:ring-[#7b68ee]/30"
-                  />
-                </div>
-              )}
-
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label className="block text-[#24233d] text-[12px] font-semibold mb-2">
+                <label className="block text-[#0e2032] text-[12px] font-semibold mb-2">
                   البريد الإلكتروني
                 </label>
                 <input
@@ -139,207 +103,139 @@ export default function AuthPage() {
                   dir="ltr"
                   value={authForm.email}
                   onChange={(e) => setAuthForm({ ...authForm, email: e.target.value })}
-                  placeholder="ahmed@acme.dev"
-                  className="w-full h-[52px] bg-[#f8f7fd] rounded-[11px] px-4 text-left font-inter text-[#55516f] text-[14px] outline-none focus:ring-2 focus:ring-[#7b68ee]/30"
+                  placeholder="name@domain.com"
+                  className="w-full h-[52px] bg-[#f8fafc] border border-[#e2e8f0] focus:border-[#00a3e0] rounded-[12px] px-4 text-left font-inter text-[#0e2032] text-[14px] outline-none transition-all focus:ring-2 focus:ring-[#00a3e0]/20"
                 />
               </div>
 
-              {authMode === 'login' ? (
-                <div>
-                  <label className="block text-[#24233d] text-[12px] font-semibold mb-2">
-                    كلمة المرور
-                  </label>
-                  <input
-                    type="password"
-                    required
-                    dir="ltr"
-                    value={authForm.password}
-                    onChange={(e) => setAuthForm({ ...authForm, password: e.target.value })}
-                    placeholder="••••••••••••"
-                    className="w-full h-[52px] bg-[#f8f7fd] rounded-[11px] px-4 text-left font-inter text-[#55516f] text-[14px] outline-none focus:ring-2 focus:ring-[#7b68ee]/30"
-                  />
-                </div>
-              ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-[#24233d] text-[12px] font-semibold mb-2">
-                      كلمة المرور
-                    </label>
-                    <input
-                      type="password"
-                      required
-                      dir="ltr"
-                      value={authForm.password}
-                      onChange={(e) => setAuthForm({ ...authForm, password: e.target.value })}
-                      placeholder="••••••••••••"
-                      className="w-full h-[52px] bg-[#f8f7fd] rounded-[11px] px-4 text-left font-inter text-[#55516f] text-[14px] outline-none focus:ring-2 focus:ring-[#7b68ee]/30"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-[#24233d] text-[12px] font-semibold mb-2">
-                      تأكيد كلمة المرور
-                    </label>
-                    <input
-                      type="password"
-                      required
-                      dir="ltr"
-                      value={authForm.confirmPassword}
-                      onChange={(e) =>
-                        setAuthForm({ ...authForm, confirmPassword: e.target.value })
-                      }
-                      placeholder="••••••••••••"
-                      className="w-full h-[52px] bg-[#f8f7fd] rounded-[11px] px-4 text-left font-inter text-[#55516f] text-[14px] outline-none focus:ring-2 focus:ring-[#7b68ee]/30"
-                    />
-                  </div>
-                </div>
-              )}
+              <div>
+                <label className="block text-[#0e2032] text-[12px] font-semibold mb-2">
+                  كلمة المرور
+                </label>
+                <input
+                  type="password"
+                  required
+                  dir="ltr"
+                  value={authForm.password}
+                  onChange={(e) => setAuthForm({ ...authForm, password: e.target.value })}
+                  placeholder="••••••••••••"
+                  className="w-full h-[52px] bg-[#f8fafc] border border-[#e2e8f0] focus:border-[#00a3e0] rounded-[12px] px-4 text-left font-inter text-[#0e2032] text-[14px] outline-none transition-all focus:ring-2 focus:ring-[#00a3e0]/20"
+                />
+              </div>
 
-              {authMode === 'register' && (
-                <div>
-                  <label className="block text-[#24233d] text-[12px] font-semibold mb-2">
-                    اسم الشركة أو الفريق • اختياري
-                  </label>
+              <div className="flex items-center justify-between pt-1 text-[12px]">
+                <label className="flex items-center gap-2 text-[#72849a] cursor-pointer">
                   <input
-                    type="text"
-                    value={authForm.company}
-                    onChange={(e) => setAuthForm({ ...authForm, company: e.target.value })}
-                    placeholder="شركة أفق الرقمية"
-                    className="w-full h-[52px] bg-[#f8f7fd] rounded-[11px] px-4 text-[#55516f] text-[14px] outline-none focus:ring-2 focus:ring-[#7b68ee]/30"
+                    type="checkbox"
+                    defaultChecked
+                    className="w-[18px] h-[18px] accent-[#00a3e0] rounded-[5px]"
                   />
-                </div>
-              )}
-
-              {authMode === 'login' ? (
-                <div className="flex items-center justify-between pt-1 text-[12px]">
-                  <label className="flex items-center gap-2 text-[#838398] cursor-pointer">
-                    <input
-                      type="checkbox"
-                      defaultChecked
-                      className="w-[18px] h-[18px] accent-[#7b68ee] rounded-[5px]"
-                    />
-                    <span>تذكرني على هذا الجهاز</span>
-                  </label>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      showToast('بيانات الدخول الافتراضية: admin@whatsapp.local / admin123')
-                    }
-                    className="text-[#7b68ee] font-semibold hover:underline"
-                  >
-                    نسيت كلمة المرور؟
-                  </button>
-                </div>
-              ) : (
-                <p className="text-[#838398] text-[11px] pt-1">
-                  بإنشاء الحساب، أنت توافق على شروط الخدمة وسياسة الخصوصية.
-                </p>
-              )}
+                  <span>تذكرني على هذا المتصفح</span>
+                </label>
+              </div>
 
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full h-[54px] bg-[#7b68ee] hover:bg-[#6b58dc] transition-colors rounded-[12px] text-white font-semibold text-[15px] mt-2 shadow-sm"
+                className="w-full h-[54px] bg-[#00a3e0] hover:bg-[#0090c7] active:bg-[#007ba8] transition-all rounded-[12px] text-white font-bold text-[15px] mt-2 shadow-[0_4px_16px_rgba(0,163,224,0.25)] cursor-pointer"
               >
-                {loading
-                  ? 'جاري التحقق...'
-                  : authMode === 'login'
-                  ? 'دخول إلى لوحة التحكم  ←'
-                  : 'إنشاء الحساب والبدء  ←'}
+                {loading ? 'جاري التحقق...' : 'دخول إلى لوحة التحكم  ←'}
               </button>
             </form>
-
-            <div className="mt-7 text-center text-[12px]">
-              <span className="text-[#838398]">
-                {authMode === 'login' ? 'ليس لديك حساب بعد؟ ' : 'لديك حساب بالفعل؟ '}
-                <button
-                  type="button"
-                  onClick={() => setAuthMode(authMode === 'login' ? 'register' : 'login')}
-                  className="text-[#7b68ee] font-semibold mr-2 hover:underline"
-                >
-                  {authMode === 'login' ? 'إنشاء حساب جديد ←' : 'تسجيل الدخول ←'}
-                </button>
-              </span>
-            </div>
           </div>
 
-          <div className="text-[#838398] text-[10px] text-center">
-            تشفير كامل للمفاتيح • عزل تام بين المشاريع
+          <div className="pt-6 border-t border-[#edf2f7] flex items-center justify-between text-[#8a99ad] text-[11px]">
+            <span>بوابة ربط واتساب الآمنة للمشاريع</span>
+            <a
+              href="https://almoq3.com/"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[#00a3e0] hover:underline font-semibold"
+            >
+              تطوير almoq3
+            </a>
           </div>
         </div>
 
-        {/* Purple Showcase Hero */}
-        <div className="lg:col-span-6 bg-[#7865e9] rounded-[28px] p-8 sm:p-14 text-white flex flex-col justify-between relative overflow-hidden min-h-[680px]">
-          <div>
-            <div className="inline-flex items-center bg-[#8d7cf0] h-[34px] px-4 rounded-[9px] text-[11px] font-semibold mb-8">
-              بوابة موحّدة • أرقام مستقلة لكل مشروع
+        {/* Brand Showcase Hero (Inspired by almoq3) */}
+        <div className="lg:col-span-6 bg-gradient-to-br from-[#0e2032] via-[#11283e] to-[#0a1826] p-8 sm:p-14 text-white flex flex-col justify-between relative overflow-hidden min-h-[640px]">
+          {/* Subtle glow circle */}
+          <div className="absolute top-0 right-0 w-[380px] h-[380px] bg-[#00a3e0]/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[#00b8f0]/10 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="relative z-10">
+            <div className="inline-flex items-center gap-2 bg-[#00a3e0]/15 border border-[#00a3e0]/30 h-[36px] px-4 rounded-[10px] text-[12px] font-semibold text-[#00b8f0] mb-8">
+              <span>●</span>
+              <span>بوابة ربط واتساب الرسمية لمشاريع almoq3</span>
             </div>
-            <h2 className="text-[36px] sm:text-[42px] font-semibold leading-[1.35] mb-4 max-w-[490px]">
-              كل محادثة، تبدأ باتصال ذكي.
+            <h2 className="text-[34px] sm:text-[40px] font-bold leading-[1.3] mb-4 max-w-[500px]">
+              تحكم كامل بأرقام ورسائل مشاريعك من واجهة واحدة.
             </h2>
-            <p className="text-[#e7e3fd] text-[15px] leading-[1.7] max-w-[490px]">
-              اربط كل مشروع برقمه الخاص عبر QR، وأدر الإرسال والاستقبال والـ Webhooks من
-              مكان واحد هادئ وواضح.
+            <p className="text-[#a5b9cd] text-[15px] leading-[1.7] max-w-[480px]">
+              وفر لعملائك وتطبيقاتك إمكانية إرسال واستقبال رسائل واتساب، الصور، المستندات، والبصمات الصوتية عبر REST API فائق السرعة.
             </p>
           </div>
 
-          <div className="bg-[#8978ed] rounded-[22px] p-6 sm:p-7 my-8">
+          <div className="relative z-10 bg-[#162e45]/80 border border-[#234261] backdrop-blur-sm rounded-[22px] p-6 sm:p-7 my-8">
             <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 items-center">
               <div className="sm:col-span-5 space-y-3">
                 {[
-                  { name: 'متجر سلة', phone: '+966 50 123 4567', dot: 'bg-[#208b72]' },
-                  { name: 'مساعد الذكاء الاصطناعي', phone: '+966 55 987 6543', dot: 'bg-[#208b72]' },
-                  { name: 'نظام التذاكر والدعم', phone: '+971 50 321 8765', dot: 'bg-[#e09f3e]' },
+                  { name: 'متجر سلة / زد', phone: '9647742209251', status: 'متصل' },
+                  { name: 'تطبيق التوصيل الميداني', phone: '9647801234567', status: 'متصل' },
+                  { name: 'مساعد الذكاء الاصطناعي', phone: '9647509876543', status: 'متصل' },
                 ].map((c) => (
                   <div
                     key={c.name}
-                    className="bg-white rounded-[15px] p-3.5 flex items-center justify-between text-[#23223d]"
+                    className="bg-[#0e2032] border border-[#1e3b56] rounded-[14px] p-3 flex items-center justify-between text-white"
                   >
                     <div>
                       <p className="font-semibold text-[13px]">{c.name}</p>
-                      <p className="font-inter text-[#828197] text-[11px]" dir="ltr">
-                        {c.phone}
+                      <p className="font-inter text-[#00a3e0] text-[11px]" dir="ltr">
+                        +{c.phone}
                       </p>
                     </div>
-                    <span className={`w-2.5 h-2.5 rounded-full ${c.dot}`} />
+                    <span className="text-[10px] font-semibold bg-[#208b72]/20 text-[#2cd9b0] px-2 py-0.5 rounded-md">
+                      {c.status}
+                    </span>
                   </div>
                 ))}
               </div>
 
               <div className="sm:col-span-3 flex flex-col items-center justify-center py-2">
-                <div className="w-[88px] h-[88px] rounded-[24px] bg-white shadow-md flex flex-col items-center justify-center">
-                  <span className="text-[#23223d] font-semibold text-[16px]">وصلة</span>
-                  <span className="text-[#7b68ee] font-inter font-semibold text-[10px]">
-                    API Hub
+                <div className="w-[90px] h-[90px] rounded-[24px] bg-[#0e2032] border border-[#00a3e0]/40 shadow-xl flex flex-col items-center justify-center p-2">
+                  <img src="/logo.png" alt="almoq3" className="w-[38px] h-[38px] object-contain mb-1" />
+                  <span className="text-[#00a3e0] font-inter font-bold text-[9px] tracking-wider">
+                    GATEWAY
                   </span>
                 </div>
               </div>
 
               <div className="sm:col-span-4 space-y-3">
-                <div className="bg-[#f4f2fe] rounded-[13px] p-3 text-right">
-                  <p className="font-inter font-semibold text-[#23223d] text-[11px]">
-                    Webhook
+                <div className="bg-[#0e2032]/80 border border-[#1e3b56] rounded-[13px] p-3 text-right">
+                  <p className="font-inter font-semibold text-[#00b8f0] text-[11px]">
+                    REST API + Polling
                   </p>
-                  <p className="text-[#7d7b92] text-[10px]">أحداث فورية موقّعة</p>
+                  <p className="text-[#8ba2ba] text-[10px]">للمشاريع والموبايل</p>
                 </div>
-                <div className="bg-[#f4f2fe] rounded-[13px] p-3 text-right">
-                  <p className="font-inter font-semibold text-[#23223d] text-[11px]">
-                    REST API
+                <div className="bg-[#0e2032]/80 border border-[#1e3b56] rounded-[13px] p-3 text-right">
+                  <p className="font-inter font-semibold text-[#00b8f0] text-[11px]">
+                    Instant Webhooks
                   </p>
-                  <p className="text-[#7d7b92] text-[10px]">إرسال نص ووسائط</p>
+                  <p className="text-[#8ba2ba] text-[10px]">توقيع HMAC-SHA256</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-3">
-            <span className="bg-[#8b7bee] px-4 py-2 rounded-[9px] text-[11px]">
-              ✓ حماية ذكية من الحظر
+          <div className="relative z-10 flex flex-wrap gap-2.5">
+            <span className="bg-[#18344e] border border-[#264c6f] px-3.5 py-1.5 rounded-[9px] text-[11px] text-[#cfe3f5]">
+              ✓ محرك Go & whatsmeow
             </span>
-            <span className="bg-[#8b7bee] px-4 py-2 rounded-[9px] text-[11px]">
-              ✓ Webhooks موثوقة مع إعادة المحاولة
+            <span className="bg-[#18344e] border border-[#264c6f] px-3.5 py-1.5 rounded-[9px] text-[11px] text-[#cfe3f5]">
+              ✓ بصمات صوتية OGG/Opus PTT
             </span>
-            <span className="bg-[#8b7bee] px-4 py-2 rounded-[9px] text-[11px]">
-              ✓ بصمات صوتية PTT تلقائية
+            <span className="bg-[#18344e] border border-[#264c6f] px-3.5 py-1.5 rounded-[9px] text-[11px] text-[#cfe3f5]">
+              ✓ خوارزمية ذكية لمقاومة الحظر
             </span>
           </div>
         </div>
@@ -347,4 +243,3 @@ export default function AuthPage() {
     </div>
   );
 }
-

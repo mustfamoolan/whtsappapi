@@ -38,7 +38,7 @@ export default function OverviewPage() {
       label: 'إجمالي المشاريع',
       value: projects.length,
       sub: projects.length > 0 ? 'مشاريع مسجلة في النظام' : 'لا توجد مشاريع بعد',
-      subColor: 'text-[#7b68ee]',
+      subColor: 'text-[#00a3e0]',
     },
     {
       label: 'الأرقام المتصلة',
@@ -62,7 +62,7 @@ export default function OverviewPage() {
       label: 'الرسائل المستقبلة',
       value: stats.inbound_count.toLocaleString(),
       sub: 'مفلترة للذكاء الاصطناعي',
-      subColor: 'text-[#7b68ee]',
+      subColor: 'text-[#00a3e0]',
     },
   ];
 
@@ -87,7 +87,7 @@ export default function OverviewPage() {
         <button
           type="button"
           onClick={() => setShowNewModal(true)}
-          className="bg-[#7b68ee] hover:bg-[#6b58dc] text-white h-[48px] px-6 rounded-[12px] font-semibold text-[13px] transition-colors"
+          className="bg-[#00a3e0] hover:bg-[#0090c7] text-white h-[48px] px-6 rounded-[12px] font-semibold text-[13px] transition-colors"
         >
           مشروع جديد  +
         </button>
@@ -121,7 +121,7 @@ export default function OverviewPage() {
             </div>
             <div className="flex items-center gap-6 text-[10px] text-[#838398]">
               <span className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-[3px] bg-[#7b68ee]" />
+                <span className="w-2.5 h-2.5 rounded-[3px] bg-[#00a3e0]" />
                 مرسلة
               </span>
               <span className="flex items-center gap-2">
@@ -140,7 +140,7 @@ export default function OverviewPage() {
                   <div className="flex items-end gap-1.5 h-[125px]">
                     <div
                       title={`صادرة: ${d.outbound}`}
-                      className="w-3 sm:w-4 bg-[#7b68ee] rounded-t-[4px] transition-all"
+                      className="w-3 sm:w-4 bg-[#00a3e0] rounded-t-[4px] transition-all"
                       style={{ height: `${outH}px` }}
                     />
                     <div
@@ -198,7 +198,7 @@ export default function OverviewPage() {
             <button
               type="button"
               onClick={() => navigate('/projects')}
-              className="text-[#7b68ee] font-semibold text-[12px] hover:underline"
+              className="text-[#00a3e0] font-semibold text-[12px] hover:underline"
             >
               عرض كل المشاريع  ←
             </button>
@@ -215,7 +215,7 @@ export default function OverviewPage() {
               <button
                 type="button"
                 onClick={() => setShowNewModal(true)}
-                className="bg-[#7b68ee] text-white text-[12px] font-semibold px-4 py-2 rounded-[10px]"
+                className="bg-[#00a3e0] text-white text-[12px] font-semibold px-4 py-2 rounded-[10px]"
               >
                 + إضافة مشروع جديد
               </button>
@@ -251,7 +251,7 @@ export default function OverviewPage() {
           )}
         </div>
 
-        <div className="lg:col-span-4 bg-[#7b68ee] rounded-[18px] p-6 text-white flex flex-col justify-between">
+        <div className="lg:col-span-4 bg-[#00a3e0] rounded-[18px] p-6 text-white flex flex-col justify-between">
           <div>
             <h3 className="text-[19px] font-semibold mb-2">من الفكرة إلى أول رسالة.</h3>
             <p className="text-[#e7e2fd] text-[12px] leading-[1.6]">
@@ -261,7 +261,7 @@ export default function OverviewPage() {
           <button
             type="button"
             onClick={() => navigate('/playground')}
-            className="mt-6 bg-white text-[#7b68ee] font-semibold text-[12px] h-[42px] px-5 rounded-[10px] self-start hover:bg-[#f8f7fd] transition-colors"
+            className="mt-6 bg-white text-[#00a3e0] font-semibold text-[12px] h-[42px] px-5 rounded-[10px] self-start hover:bg-[#f8f7fd] transition-colors"
           >
             افتح مختبر الإرسال  ←
           </button>

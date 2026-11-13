@@ -156,7 +156,7 @@ export default function LogsPage() {
             setTypeFilter('all');
             setStatusFilter('all');
           }}
-          className="text-[#7b68ee] font-semibold text-[12px] hover:underline"
+          className="text-[#00a3e0] font-semibold text-[12px] hover:underline"
         >
           إعادة ضبط
         </button>
@@ -185,7 +185,7 @@ export default function LogsPage() {
               <th className="pl-4 rounded-l-[10px] font-normal">إجراء</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-[#f3f2fa] text-[12px]">
+          <tbody className="divide-y divide-[#f0f8fd] text-[12px]">
             {rowsToDisplay.length === 0 ? (
               <tr>
                 <td colSpan={9} className="py-10 text-center text-[#838398]">
@@ -218,11 +218,11 @@ export default function LogsPage() {
                           {m.message_type === 'audio' ? (
                             <audio controls preload="none" src={m.media_url} className="h-8 w-[210px] max-w-full" />
                           ) : m.message_type === 'image' ? (
-                            <a href={m.media_url} target="_blank" rel="noreferrer" className="text-[#7b68ee] hover:underline text-[11px] font-medium">
+                            <a href={m.media_url} target="_blank" rel="noreferrer" className="text-[#00a3e0] hover:underline text-[11px] font-medium">
                               🖼️ عرض الصورة
                             </a>
                           ) : (
-                            <a href={m.media_url} target="_blank" rel="noreferrer" className="text-[#7b68ee] hover:underline text-[11px] font-medium truncate">
+                            <a href={m.media_url} target="_blank" rel="noreferrer" className="text-[#00a3e0] hover:underline text-[11px] font-medium truncate">
                               📎 {m.file_name || 'فتح الملف'}
                             </a>
                           )}
@@ -253,7 +253,7 @@ export default function LogsPage() {
                             e.stopPropagation();
                             handleRetryWebhook(m.id);
                           }}
-                          className="bg-[#efecfc] hover:bg-[#e1dbfa] text-[#7b68ee] font-semibold text-[10px] px-3 py-1 rounded-[7px]"
+                          className="bg-[#e8f6fd] hover:bg-[#d6effa] text-[#00a3e0] font-semibold text-[10px] px-3 py-1 rounded-[7px]"
                         >
                           ↻ إعادة
                         </button>
@@ -285,7 +285,7 @@ export default function LogsPage() {
           <button
             type="button"
             onClick={() => handleRetryWebhook(selectedLog.id)}
-            className="bg-[#7b68ee] hover:bg-[#6b58dc] text-white font-semibold text-[12px] h-[44px] px-6 rounded-[11px] transition-colors"
+            className="bg-[#00a3e0] hover:bg-[#0090c7] text-white font-semibold text-[12px] h-[44px] px-6 rounded-[11px] transition-colors"
           >
             ↻  إعادة إرسال Webhook الآن
           </button>

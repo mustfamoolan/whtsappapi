@@ -8,7 +8,7 @@ export default function Footer() {
         <span>جميع خوادم الـ API وواتساب تعمل بكفاءة عالية</span>
       </div>
       <div className="flex items-center gap-3">
-        <span>بوابة وصلة API © {new Date().getFullYear()}</span>
+        <span>بوابة almoq3 WhatsApp API © {new Date().getFullYear()}</span>
         <span>•</span>
         <a
           href="https://almoq3.com/"

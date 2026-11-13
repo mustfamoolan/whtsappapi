@@ -28,7 +28,7 @@ export default function ProjectDetailPage() {
         <button
           type="button"
           onClick={() => navigate('/projects')}
-          className="mt-4 text-[#7b68ee] text-[12px] font-semibold hover:underline"
+          className="mt-4 text-[#00a3e0] text-[12px] font-semibold hover:underline"
         >
           العودة إلى قائمة المشاريع
         </button>
@@ -51,7 +51,7 @@ export default function ProjectDetailPage() {
           <button
             type="button"
             onClick={() => navigate('/projects')}
-            className="bg-[#f8f7fd] hover:bg-[#efecfc] text-[#7b68ee] text-[12px] font-semibold h-[38px] px-3.5 rounded-[10px] transition-colors"
+            className="bg-[#f8f7fd] hover:bg-[#e8f6fd] text-[#00a3e0] text-[12px] font-semibold h-[38px] px-3.5 rounded-[10px] transition-colors"
           >
             → كل المشاريع
           </button>
@@ -82,7 +82,7 @@ export default function ProjectDetailPage() {
               className={({ isActive }) =>
                 `px-3.5 py-2 rounded-[9px] text-[12px] transition-all ${
                   isActive
-                    ? 'bg-white text-[#7b68ee] font-semibold shadow-sm'
+                    ? 'bg-white text-[#00a3e0] font-semibold shadow-sm'
                     : 'text-[#838398] hover:text-[#22213d]'
                 }`
               }

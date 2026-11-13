@@ -71,7 +71,7 @@ export default function NewProjectModal() {
           <button
             type="button"
             onClick={() => setShowNewModal(false)}
-            className="w-[34px] h-[34px] rounded-[9px] bg-[#f8f7fd] hover:bg-[#efecfc] text-[#838398] flex items-center justify-center text-[13px]"
+            className="w-[34px] h-[34px] rounded-[9px] bg-[#f8f7fd] hover:bg-[#e8f6fd] text-[#838398] flex items-center justify-center text-[13px]"
           >
             ✕
           </button>
@@ -88,7 +88,7 @@ export default function NewProjectModal() {
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               placeholder="متجر سلة • الإشعارات"
-              className="w-full h-[50px] bg-[#f8f7fd] rounded-[11px] px-4 text-[#55516f] text-[13px] outline-none focus:ring-2 focus:ring-[#7b68ee]/30"
+              className="w-full h-[50px] bg-[#f8f7fd] rounded-[11px] px-4 text-[#55516f] text-[13px] outline-none focus:ring-2 focus:ring-[#00a3e0]/30"
             />
           </div>
 
@@ -101,7 +101,7 @@ export default function NewProjectModal() {
               value={form.description}
               onChange={(e) => setForm({ ...form, description: e.target.value })}
               placeholder="إشعارات الطلبات وتحديثات الشحن للعملاء"
-              className="w-full h-[50px] bg-[#f8f7fd] rounded-[11px] px-4 text-[#55516f] text-[13px] outline-none focus:ring-2 focus:ring-[#7b68ee]/30"
+              className="w-full h-[50px] bg-[#f8f7fd] rounded-[11px] px-4 text-[#55516f] text-[13px] outline-none focus:ring-2 focus:ring-[#00a3e0]/30"
             />
           </div>
 
@@ -117,7 +117,7 @@ export default function NewProjectModal() {
                   onClick={() => setForm({ ...form, env: envOption })}
                   className={`h-[48px] rounded-[11px] text-[12px] transition-all ${
                     form.env === envOption
-                      ? 'bg-[#efecfc] text-[#7b68ee] font-semibold'
+                      ? 'bg-[#e8f6fd] text-[#00a3e0] font-semibold'
                       : 'bg-[#f8f7fd] text-[#838398]'
                   }`}
                 >
@@ -128,7 +128,7 @@ export default function NewProjectModal() {
           </div>
 
           <div className="bg-[#f5f2fe] rounded-[12px] p-4">
-            <p className="text-[#7b68ee] font-semibold text-[12px]">
+            <p className="text-[#00a3e0] font-semibold text-[12px]">
               الخطوة التالية: مسح الباركود QR
             </p>
             <p className="text-[#838398] text-[11px] mt-1">
@@ -139,14 +139,14 @@ export default function NewProjectModal() {
           <div className="flex items-center justify-between gap-3 pt-3">
             <button
               type="submit"
-              className="flex-1 h-[48px] bg-[#7b68ee] hover:bg-[#6b58dc] text-white font-semibold text-[13px] rounded-[11px] px-6 text-right transition-colors"
+              className="flex-1 h-[48px] bg-[#00a3e0] hover:bg-[#0090c7] text-white font-semibold text-[13px] rounded-[11px] px-6 text-right transition-colors"
             >
               إنشاء المشروع وربط الرقم  ←
             </button>
             <button
               type="button"
               onClick={() => setShowNewModal(false)}
-              className="h-[48px] px-6 bg-[#f8f7fd] hover:bg-[#efecfc] text-[#838398] text-[12px] rounded-[11px] transition-colors"
+              className="h-[48px] px-6 bg-[#f8f7fd] hover:bg-[#e8f6fd] text-[#838398] text-[12px] rounded-[11px] transition-colors"
             >
               إلغاء
             </button>

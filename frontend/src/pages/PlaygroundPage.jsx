@@ -117,7 +117,7 @@ export default function PlaygroundPage() {
                   onClick={() => setPlayType(t.id)}
                   className={`rounded-[8px] text-[11px] transition-all ${
                     playType === t.id
-                      ? 'bg-white text-[#7b68ee] font-semibold shadow-sm'
+                      ? 'bg-white text-[#00a3e0] font-semibold shadow-sm'
                       : 'text-[#838398]'
                   }`}
                 >
@@ -180,7 +180,7 @@ export default function PlaygroundPage() {
                 </div>
 
                 <div className="bg-[#f5f2fe] rounded-[11px] p-4 mb-5">
-                  <p className="text-[#7b68ee] font-semibold text-[12px]">
+                  <p className="text-[#00a3e0] font-semibold text-[12px]">
                     إرسال آمن بدون تكرار
                   </p>
                   <p className="text-[#838398] text-[11px] mt-1">
@@ -200,7 +200,7 @@ export default function PlaygroundPage() {
                       className="hidden"
                       onChange={(e) => setPlayFile(e.target.files?.[0] || null)}
                     />
-                    <p className="text-[#7b68ee] font-semibold text-[12px]">
+                    <p className="text-[#00a3e0] font-semibold text-[12px]">
                       {playFile
                         ? `تم اختيار: ${playFile.name}`
                         : 'اسحب الملف إلى هنا أو اختر من جهازك'}
@@ -240,7 +240,7 @@ export default function PlaygroundPage() {
               type="button"
               disabled={sending}
               onClick={handleSend}
-              className="w-full h-[50px] bg-[#7b68ee] hover:bg-[#6b58dc] text-white font-semibold text-[14px] rounded-[12px] px-5 text-right transition-colors"
+              className="w-full h-[50px] bg-[#00a3e0] hover:bg-[#0090c7] text-white font-semibold text-[14px] rounded-[12px] px-5 text-right transition-colors"
             >
               {sending ? 'جاري الإرسال...' : 'إرسال الطلب  ←'}
             </button>

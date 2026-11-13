@@ -176,7 +176,7 @@ export default function SessionPage() {
               </button>
             </div>
 
-            <div className="flex items-center justify-between pt-2 border-t border-[#f3f2fa]">
+            <div className="flex items-center justify-between pt-2 border-t border-[#f0f8fd]">
               <span className="text-[#838398] text-[12px]">
                 الرقم المستهدف:{' '}
                 <strong className="font-inter text-[#24233d]" dir="ltr">
@@ -215,7 +215,7 @@ export default function SessionPage() {
                     navigator.clipboard.writeText(selectedProject?.api_key || '');
                     showToast('تم نسخ X-API-Key');
                   }}
-                  className="text-[#7b68ee] font-semibold text-[11px] shrink-0 hover:underline"
+                  className="text-[#00a3e0] font-semibold text-[11px] shrink-0 hover:underline"
                 >
                   ⧉  نسخ
                 </button>
@@ -248,7 +248,7 @@ export default function SessionPage() {
                     navigator.clipboard.writeText(selectedProject?.webhook_secret || '');
                     showToast('تم نسخ Webhook Secret');
                   }}
-                  className="text-[#7b68ee] font-semibold text-[11px] shrink-0 hover:underline"
+                  className="text-[#00a3e0] font-semibold text-[11px] shrink-0 hover:underline"
                 >
                   ⧉  نسخ
                 </button>
@@ -271,7 +271,7 @@ export default function SessionPage() {
             </div>
 
             <div className="mt-5 bg-[#f5f2fe] rounded-[12px] p-4">
-              <p className="text-[#7b68ee] font-semibold text-[12px]">
+              <p className="text-[#00a3e0] font-semibold text-[12px]">
                 تدوير المفاتيح بأمان
               </p>
               <p className="text-[#838398] text-[11px] mt-1">
@@ -284,7 +284,7 @@ export default function SessionPage() {
             <button
               type="button"
               onClick={handleRegenerateKey}
-              className="bg-[#efecfc] hover:bg-[#e3defa] text-[#7b68ee] font-semibold text-[12px] h-[44px] px-6 rounded-[11px] transition-colors"
+              className="bg-[#e8f6fd] hover:bg-[#e3defa] text-[#00a3e0] font-semibold text-[12px] h-[44px] px-6 rounded-[11px] transition-colors"
             >
               ↻  تدوير المفاتيح
             </button>
@@ -303,7 +303,7 @@ export default function SessionPage() {
               أعطِ هذا الرابط والمفاتيح لمشروعك الآخر ليقوم بالإرسال والاستقبال عبر رقم واتساب هذا المشروع.
             </p>
           </div>
-          <span className="bg-[#efecfc] text-[#7b68ee] font-inter font-semibold text-[11px] px-3 py-1.5 rounded-[8px]" dir="ltr">
+          <span className="bg-[#e8f6fd] text-[#00a3e0] font-inter font-semibold text-[11px] px-3 py-1.5 rounded-[8px]" dir="ltr">
             Header: X-API-Key
           </span>
         </div>
@@ -321,10 +321,10 @@ export default function SessionPage() {
                 navigator.clipboard.writeText(`${window.location.origin}${ep.path}`);
                 showToast(`تم نسخ ${ep.path}`);
               }}
-              className="bg-[#f8f7fd] hover:bg-[#efecfc] cursor-pointer transition-colors rounded-[12px] p-3.5 text-right"
+              className="bg-[#f8f7fd] hover:bg-[#e8f6fd] cursor-pointer transition-colors rounded-[12px] p-3.5 text-right"
             >
               <div className="flex items-center justify-between mb-1.5" dir="ltr">
-                <span className="font-inter font-semibold text-[10px] bg-[#7b68ee] text-white px-2 py-0.5 rounded-md">
+                <span className="font-inter font-semibold text-[10px] bg-[#00a3e0] text-white px-2 py-0.5 rounded-md">
                   {ep.method}
                 </span>
                 <span className="font-inter text-[#24233d] text-[11px] font-semibold">
@@ -361,7 +361,7 @@ export default function SessionPage() {
             },
           ].map((step) => (
             <div key={step.num} className="flex items-start gap-3.5">
-              <div className="w-[38px] h-[38px] rounded-[10px] bg-[#efecfc] text-[#7b68ee] font-inter font-semibold text-[13px] flex items-center justify-center shrink-0">
+              <div className="w-[38px] h-[38px] rounded-[10px] bg-[#e8f6fd] text-[#00a3e0] font-inter font-semibold text-[13px] flex items-center justify-center shrink-0">
                 {step.num}
               </div>
               <div>

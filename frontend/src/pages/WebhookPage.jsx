@@ -99,7 +99,7 @@ export default function WebhookPage() {
                 value={form.webhook_url}
                 onChange={(e) => setForm({ ...form, webhook_url: e.target.value })}
                 placeholder="https://api.salla-store.dev/webhooks/whatsapp"
-                className="w-full h-[52px] bg-[#f8f7fd] rounded-[11px] px-4 text-left font-inter text-[#5d5975] text-[13px] outline-none focus:ring-2 focus:ring-[#7b68ee]/30"
+                className="w-full h-[52px] bg-[#f8f7fd] rounded-[11px] px-4 text-left font-inter text-[#5d5975] text-[13px] outline-none focus:ring-2 focus:ring-[#00a3e0]/30"
               />
             </div>
 
@@ -126,7 +126,7 @@ export default function WebhookPage() {
                     setTesting(false);
                   }
                 }}
-                className="bg-[#efecfc] hover:bg-[#e3defa] text-[#7b68ee] font-semibold text-[12px] h-[42px] px-5 rounded-[10px] transition-colors"
+                className="bg-[#e8f6fd] hover:bg-[#e3defa] text-[#00a3e0] font-semibold text-[12px] h-[42px] px-5 rounded-[10px] transition-colors"
               >
                 {testing ? 'جاري الاختبار...' : 'اختبار الاتصال'}
               </button>
@@ -173,7 +173,7 @@ export default function WebhookPage() {
                     onClick={() => setForm({ ...form, [toggle.key]: !form[toggle.key] })}
                     className={`w-[44px] h-[24px] rounded-full p-1 transition-colors flex items-center shrink-0 ${
                       form[toggle.key]
-                        ? 'bg-[#7b68ee] justify-start'
+                        ? 'bg-[#00a3e0] justify-start'
                         : 'bg-[#d9d7e8] justify-end'
                     }`}
                   >
@@ -256,7 +256,7 @@ export default function WebhookPage() {
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-[#838398]">توقيع Webhook</span>
-                <span className="font-inter font-semibold text-[#7b68ee]" dir="ltr">
+                <span className="font-inter font-semibold text-[#00a3e0]" dir="ltr">
                   HMAC-SHA256
                 </span>
               </div>
@@ -271,14 +271,14 @@ export default function WebhookPage() {
           <button
             type="button"
             onClick={handleSave}
-            className="bg-[#7b68ee] hover:bg-[#6b58dc] text-white font-semibold text-[13px] h-[44px] px-6 rounded-[11px] transition-colors"
+            className="bg-[#00a3e0] hover:bg-[#0090c7] text-white font-semibold text-[13px] h-[44px] px-6 rounded-[11px] transition-colors"
           >
             حفظ التغييرات
           </button>
           <button
             type="button"
             onClick={resetFormFromProject}
-            className="bg-[#f8f7fd] hover:bg-[#efecfc] text-[#838398] text-[12px] h-[44px] px-5 rounded-[11px] transition-colors"
+            className="bg-[#f8f7fd] hover:bg-[#e8f6fd] text-[#838398] text-[12px] h-[44px] px-5 rounded-[11px] transition-colors"
           >
             إلغاء التغييرات
           </button>

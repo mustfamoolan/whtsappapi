@@ -186,10 +186,10 @@ function verifyWaslaWebhook(rawBody, signatureHeader, secret) {
             دليل الربط البرمجي و API
           </h1>
           <p className="text-[#838398] text-[13px] mt-1">
-            كل ما تحتاجه لربط مشاريعك الخارجية مع بوابة وصلة لإرسال الرسائل واستقبال الـ Webhooks.
+            كل ما تحتاجه لربط مشاريعك الخارجية مع بوابة almoq3 WhatsApp API لإرسال الرسائل واستقبال الـ Webhooks.
           </p>
         </div>
-        <div className="bg-[#efecfc] text-[#7b68ee] font-inter font-semibold text-[12px] px-4 py-2.5 rounded-[11px]" dir="ltr">
+        <div className="bg-[#e8f6fd] text-[#00a3e0] font-inter font-semibold text-[12px] px-4 py-2.5 rounded-[11px]" dir="ltr">
           Base URL: {origin}/api/v1
         </div>
       </div>
@@ -213,7 +213,7 @@ function verifyWaslaWebhook(rawBody, signatureHeader, secret) {
           <button
             type="button"
             onClick={() => copyText(apiKey, 'X-API-Key')}
-            className="text-[#7b68ee] font-semibold text-[11px] shrink-0 hover:underline"
+            className="text-[#00a3e0] font-semibold text-[11px] shrink-0 hover:underline"
           >
             ⧉ نسخ
           </button>
@@ -229,7 +229,7 @@ function verifyWaslaWebhook(rawBody, signatureHeader, secret) {
           <button
             type="button"
             onClick={() => copyText(webhookSecret, 'Webhook Secret')}
-            className="text-[#7b68ee] font-semibold text-[11px] shrink-0 hover:underline"
+            className="text-[#00a3e0] font-semibold text-[11px] shrink-0 hover:underline"
           >
             ⧉ نسخ
           </button>
@@ -258,8 +258,8 @@ function verifyWaslaWebhook(rawBody, signatureHeader, secret) {
                 onClick={() => setActiveEndpoint(ep.id)}
                 className={`h-[40px] rounded-[10px] text-[11px] transition-all ${
                   activeEndpoint === ep.id
-                    ? 'bg-[#7b68ee] text-white font-semibold'
-                    : 'bg-[#f8f7fd] text-[#838398] hover:bg-[#efecfc]'
+                    ? 'bg-[#00a3e0] text-white font-semibold'
+                    : 'bg-[#f8f7fd] text-[#838398] hover:bg-[#e8f6fd]'
                 }`}
               >
                 {ep.title}
@@ -271,7 +271,7 @@ function verifyWaslaWebhook(rawBody, signatureHeader, secret) {
           <div className="bg-[#f8f7fd] rounded-[14px] p-4 space-y-2">
             <div className="flex items-center justify-between" dir="ltr">
               <div className="flex items-center gap-2">
-                <span className="bg-[#7b68ee] text-white font-inter font-semibold text-[10px] px-2.5 py-1 rounded-md">
+                <span className="bg-[#00a3e0] text-white font-inter font-semibold text-[10px] px-2.5 py-1 rounded-md">
                   {currentEp.method}
                 </span>
                 <span className="font-inter font-semibold text-[#24233d] text-[13px]">
@@ -281,7 +281,7 @@ function verifyWaslaWebhook(rawBody, signatureHeader, secret) {
               <button
                 type="button"
                 onClick={() => copyText(`${origin}${currentEp.path}`, 'رابط الـ Endpoint')}
-                className="text-[#7b68ee] text-[11px] font-semibold hover:underline"
+                className="text-[#00a3e0] text-[11px] font-semibold hover:underline"
               >
                 نسخ الرابط
               </button>
@@ -302,7 +302,7 @@ function verifyWaslaWebhook(rawBody, signatureHeader, secret) {
                 >
                   <div>
                     <div className="flex items-center gap-2" dir="ltr">
-                      <code className="font-inter font-semibold text-[#7b68ee] text-[12px]">
+                      <code className="font-inter font-semibold text-[#00a3e0] text-[12px]">
                         {f.name}
                       </code>
                       <span className="text-[#838398] font-inter text-[10px]">{f.type}</span>
@@ -320,7 +320,7 @@ function verifyWaslaWebhook(rawBody, signatureHeader, secret) {
           </div>
 
           <div className="bg-[#f5f2fe] rounded-[12px] p-4">
-            <p className="text-[#7b68ee] font-semibold text-[12px]">
+            <p className="text-[#00a3e0] font-semibold text-[12px]">
               ترويسة منع التكرار (Idempotency-Key)
             </p>
             <p className="text-[#838398] text-[11px] mt-1">
@@ -347,7 +347,7 @@ function verifyWaslaWebhook(rawBody, signatureHeader, secret) {
                     onClick={() => setCodeLang(lang.id)}
                     className={`px-2.5 py-1 rounded-[6px] font-inter text-[10px] transition-colors ${
                       codeLang === lang.id
-                        ? 'bg-[#7b68ee] text-white font-semibold'
+                        ? 'bg-[#00a3e0] text-white font-semibold'
                         : 'text-[#bbb3d7] hover:text-white'
                     }`}
                   >
@@ -426,14 +426,14 @@ function verifyWaslaWebhook(rawBody, signatureHeader, secret) {
               <button
                 type="button"
                 onClick={() => copyText(`${origin}/api/v1/messages`, 'رابط جلب الرسائل')}
-                className="text-[#7b68ee] text-[11px] font-semibold hover:underline"
+                className="text-[#00a3e0] text-[11px] font-semibold hover:underline"
               >
                 نسخ الرابط
               </button>
             </div>
             <p className="text-[#55516f] text-[11px]">
               جلب الرسائل الصادرة والواردة مع دعم الفلترة بـ{' '}
-              <code className="font-inter text-[#7b68ee]" dir="ltr">?direction=inbound&since_id=0&limit=50</code>
+              <code className="font-inter text-[#00a3e0]" dir="ltr">?direction=inbound&since_id=0&limit=50</code>
             </p>
           </div>
 
@@ -450,14 +450,14 @@ function verifyWaslaWebhook(rawBody, signatureHeader, secret) {
               <button
                 type="button"
                 onClick={() => copyText(`${origin}/api/v1/status`, 'رابط فحص الحالة')}
-                className="text-[#7b68ee] text-[11px] font-semibold hover:underline"
+                className="text-[#00a3e0] text-[11px] font-semibold hover:underline"
               >
                 نسخ الرابط
               </button>
             </div>
             <p className="text-[#55516f] text-[11px]">
               فحص حالة اتصال رقم الواتساب الخاص بالمشروع باستخدام ترويسة{' '}
-              <code className="font-inter text-[#7b68ee]" dir="ltr">X-API-Key</code> فقط.
+              <code className="font-inter text-[#00a3e0]" dir="ltr">X-API-Key</code> فقط.
             </p>
           </div>
           <div className="bg-[#f8f7fd] rounded-[14px] p-4 space-y-2">
@@ -473,13 +473,13 @@ function verifyWaslaWebhook(rawBody, signatureHeader, secret) {
               <button
                 type="button"
                 onClick={() => copyText(`${origin}/api/v1/qr`, 'رابط جلب الباركود')}
-                className="text-[#7b68ee] text-[11px] font-semibold hover:underline"
+                className="text-[#00a3e0] text-[11px] font-semibold hover:underline"
               >
                 نسخ الرابط
               </button>
             </div>
             <p className="text-[#55516f] text-[11px]">
-              بدء الجلسة وجلب صورة الباركود (<code className="font-inter text-[#7b68ee]" dir="ltr">qr_base64</code>) ليعرضه مشروعك لمستخدميه ويتجدد تلقائياً عند كل طلب حتى يتم المسح.
+              بدء الجلسة وجلب صورة الباركود (<code className="font-inter text-[#00a3e0]" dir="ltr">qr_base64</code>) ليعرضه مشروعك لمستخدميه ويتجدد تلقائياً عند كل طلب حتى يتم المسح.
             </p>
           </div>
 
@@ -496,7 +496,7 @@ function verifyWaslaWebhook(rawBody, signatureHeader, secret) {
               <button
                 type="button"
                 onClick={() => copyText(`${origin}/api/v1/contacts`, 'رابط جهات الاتصال')}
-                className="text-[#7b68ee] text-[11px] font-semibold hover:underline"
+                className="text-[#00a3e0] text-[11px] font-semibold hover:underline"
               >
                 نسخ الرابط
               </button>
@@ -509,7 +509,7 @@ function verifyWaslaWebhook(rawBody, signatureHeader, secret) {
           <div className="bg-[#f8f7fd] rounded-[14px] p-4 space-y-2">
             <div className="flex items-center justify-between" dir="ltr">
               <div className="flex items-center gap-2">
-                <span className="bg-[#7b68ee] text-white font-inter font-semibold text-[10px] px-2.5 py-1 rounded-md">
+                <span className="bg-[#00a3e0] text-white font-inter font-semibold text-[10px] px-2.5 py-1 rounded-md">
                   POST
                 </span>
                 <span className="font-inter font-semibold text-[#24233d] text-[13px]">
@@ -519,13 +519,13 @@ function verifyWaslaWebhook(rawBody, signatureHeader, secret) {
               <button
                 type="button"
                 onClick={() => copyText(`${origin}/api/v1/logout`, 'رابط فصل الرقم')}
-                className="text-[#7b68ee] text-[11px] font-semibold hover:underline"
+                className="text-[#00a3e0] text-[11px] font-semibold hover:underline"
               >
                 نسخ الرابط
               </button>
             </div>
             <p className="text-[#55516f] text-[11px]">
-              تسجيل الخروج وفصل رقم الواتساب المرتبط بالمشروع عبر <code className="font-inter text-[#7b68ee]" dir="ltr">X-API-Key</code>.
+              تسجيل الخروج وفصل رقم الواتساب المرتبط بالمشروع عبر <code className="font-inter text-[#00a3e0]" dir="ltr">X-API-Key</code>.
             </p>
           </div>
         </div>
@@ -538,15 +538,15 @@ function verifyWaslaWebhook(rawBody, signatureHeader, secret) {
             3. استقبال الرسائل الفوري (Inbound Webhook)
           </h2>
           <p className="text-[#838398] text-[12px] leading-[1.7]">
-            عندما يرسل عميل رسالة إلى رقم الواتساب المرتبط بمشروعك، ترسل وصلة طلب{' '}
-            <code className="font-inter text-[#7b68ee]" dir="ltr">POST</code> تلقائياً إلى{' '}
-            <code className="font-inter text-[#7b68ee]" dir="ltr">Webhook URL</code> المحدد في صفحة الحماية و Webhook.
+            عندما يرسل عميل رسالة إلى رقم الواتساب المرتبط بمشروعك، ترسل البوابة طلب{' '}
+            <code className="font-inter text-[#00a3e0]" dir="ltr">POST</code> تلقائياً إلى{' '}
+            <code className="font-inter text-[#00a3e0]" dir="ltr">Webhook URL</code> المحدد في صفحة الحماية و Webhook.
           </p>
 
           <div className="space-y-2 text-[12px]">
             <div className="bg-[#f8f7fd] rounded-[10px] p-3.5 flex items-center justify-between">
               <span className="text-[#24233d] font-semibold">ترويسة التوقيع الأمني</span>
-              <code className="font-inter text-[#7b68ee] text-[11px]" dir="ltr">
+              <code className="font-inter text-[#00a3e0] text-[11px]" dir="ltr">
                 X-Webhook-Signature: sha256=...
               </code>
             </div>
@@ -584,7 +584,7 @@ function verifyWaslaWebhook(rawBody, signatureHeader, secret) {
             <p className="text-[#bbb3d7] text-[12px] mb-4">
               تحقق من صحة الطلب في مشروعك الخارجي باستخدام{' '}
               <code className="font-inter text-[#b8abff]" dir="ltr">Webhook Secret</code>{' '}
-              لضمان أن الطلب صادر فعلاً من بوابة وصلة.
+              لضمان أن الطلب صادر فعلاً من بوابة almoq3 WhatsApp API.
             </p>
             <pre
               className="font-inter text-[#dad3f0] text-[11px] leading-[1.65] overflow-x-auto text-left whitespace-pre-wrap bg-[#1c1930] rounded-[12px] p-4"

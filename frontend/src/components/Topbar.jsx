@@ -23,7 +23,7 @@ export default function Topbar({ onOpenMenu }) {
           type="button"
           onClick={onOpenMenu}
           aria-label="فتح القائمة"
-          className="lg:hidden w-10 h-10 shrink-0 rounded-[11px] bg-[#f8f7fd] hover:bg-[#efecfc] text-[#22213d] flex items-center justify-center text-lg"
+          className="lg:hidden w-10 h-10 shrink-0 rounded-[11px] bg-[#f8f7fd] hover:bg-[#e8f6fd] text-[#22213d] flex items-center justify-center text-lg"
         >
           ☰
         </button>
@@ -66,7 +66,7 @@ export default function Topbar({ onOpenMenu }) {
                     }}
                     className={`w-full px-4 py-2.5 text-right flex items-center justify-between hover:bg-[#f8f7fd] ${
                       selectedProject?.id === p.id
-                        ? 'bg-[#f5f2fe] text-[#7b68ee] font-semibold'
+                        ? 'bg-[#f5f2fe] text-[#00a3e0] font-semibold'
                         : 'text-[#22213d]'
                     }`}
                   >
@@ -86,7 +86,7 @@ export default function Topbar({ onOpenMenu }) {
                     setDropdownOpen(false);
                     setShowNewModal(true);
                   }}
-                  className="w-full py-2 text-right px-2 text-[#7b68ee] text-[12px] font-semibold hover:bg-[#f8f7fd] rounded-lg"
+                  className="w-full py-2 text-right px-2 text-[#00a3e0] text-[12px] font-semibold hover:bg-[#f8f7fd] rounded-lg"
                 >
                   + إضافة مشروع جديد
                 </button>

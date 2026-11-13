@@ -35,7 +35,7 @@ export default function ProjectsPage() {
         <button
           type="button"
           onClick={() => setShowNewModal(true)}
-          className="bg-[#7b68ee] hover:bg-[#6b58dc] text-white h-[48px] px-6 rounded-[12px] font-semibold text-[13px] transition-colors"
+          className="bg-[#00a3e0] hover:bg-[#0090c7] text-white h-[48px] px-6 rounded-[12px] font-semibold text-[13px] transition-colors"
         >
           إضافة مشروع  +
         </button>
@@ -104,7 +104,7 @@ export default function ProjectsPage() {
                     setSelectedProjectId(proj.id);
                     navigate(`/projects/${proj.id}`);
                   }}
-                  className="w-full h-[41px] bg-[#f6f4fe] hover:bg-[#ece8fc] transition-colors rounded-[10px] text-[#7b68ee] font-semibold text-[12px] px-4 text-right"
+                  className="w-full h-[41px] bg-[#f6f4fe] hover:bg-[#ece8fc] transition-colors rounded-[10px] text-[#00a3e0] font-semibold text-[12px] px-4 text-right"
                 >
                   فتح لوحة المشروع  ←
                 </button>

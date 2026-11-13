@@ -3,6 +3,7 @@ package bootstrap
 import (
 	"fmt"
 	"log"
+	"os"
 
 	"whatsapp-api/app/models"
 	"whatsapp-api/config"

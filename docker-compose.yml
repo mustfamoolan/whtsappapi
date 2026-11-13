@@ -1,0 +1,45 @@
+name: whtsappapi-live
+
+services:
+  app:
+    build: .
+    ports:
+      - "127.0.0.1:${APP_PORT:-8082}:8080"
+    environment:
+      - APP_ENV=production
+      - DB_HOST=db
+      - CACHE_HOST=redis
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    restart: unless-stopped
+    volumes:
+      - uploads_data:/app/storage/uploads
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: ${DB_USERNAME:-almoq3}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-secret}
+      POSTGRES_DB: ${DB_DATABASE:-whatsapp_api}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME:-almoq3} -d ${DB_DATABASE:-whatsapp_api}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:
+  uploads_data:
